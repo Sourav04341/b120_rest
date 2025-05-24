@@ -4,9 +4,9 @@ const {getUser,createUser,getUserById,updateUser,deleteUser}=require("../control
 
 const router=express.Router()
 router.get("/",getUser)
-router.get("/",createUser)
+router.post("/",createUser)
 router.get("/:id",getUserById)
-router.get("/:id",updateUser)
-router.get("/:id",deleteUser)
+router.put("/:id",updateUser)
+router.delete("/:id",deleteUser)
 
 module.exports=router
