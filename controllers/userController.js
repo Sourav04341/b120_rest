@@ -23,17 +23,17 @@ const createUser=async(req,res)=>{
 }
 
 // get user by id
-const getUserById=async(req,res)=>{
-    try{
-        const user=await User.findOne(req.params.id)
-        if(!user) return
-        res.status(404).json({message:"user not found"})
-        res.json(user)
-            
-    }catch(error){
-        res.status(500).json({message:error.message})
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);  // Perfect for _id lookups
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-}
+};
 
 // update user
 const updateUser=async(req,res)=>{
@@ -56,8 +56,8 @@ const deleteUser=async(req,res)=>{
     try{
         const deletedUser=await User.findByIdAndDelete(req.params.id)
 
-            if(!deleteUser) return
-            res.status(404).json({message: "user not found"})
+            if(!deletedUser) return
+            res.status(404).json({message: "user is deleted"})
             res.json(deletedUser)
 
     }catch(error){
